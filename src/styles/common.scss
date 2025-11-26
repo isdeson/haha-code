@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'CHei';
+  src: url('../assets/fonts/WENDAOChaoHei.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'HSans';
+  src: url('../assets/fonts/HONORSans.ttf') format('truetype');
+}
+
+// 单行溢出显示省略号
+.overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

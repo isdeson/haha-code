@@ -1,0 +1,11 @@
+.theme-control {
+  .theme-switcher {
+    transition: rotate 1s linear;
+    width: fit-content;
+    background-color: var(--semi-color-bg-4);
+    border-radius: 50%;
+    .icon {
+      font-size: 30px;
+    }
+  }
+}

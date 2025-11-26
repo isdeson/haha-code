@@ -1,0 +1,79 @@
+{
+  "id": "5042666",
+  "name": "哈哈二维码",
+  "font_family": "iconfont",
+  "css_prefix_text": "haha-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "25964454",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "31833790",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e737",
+      "unicode_decimal": 59191
+    },
+    {
+      "icon_id": "36062548",
+      "name": "删除-",
+      "font_class": "shanchu-",
+      "unicode": "e856",
+      "unicode_decimal": 59478
+    },
+    {
+      "icon_id": "77403",
+      "name": "链接",
+      "font_class": "lianjie",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1413428",
+      "name": "复制",
+      "font_class": "fuzhi",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    },
+    {
+      "icon_id": "3278362",
+      "name": "放大",
+      "font_class": "fangda",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "5485660",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "9594793",
+      "name": "刷新",
+      "font_class": "shuaxin1",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "16371048",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "44156755",
+      "name": "浅色模式",
+      "font_class": "qiansemoshi",
+      "unicode": "e97c",
+      "unicode_decimal": 59772
+    }
+  ]
+}

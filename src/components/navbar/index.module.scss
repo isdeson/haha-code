@@ -1,0 +1,26 @@
+.navbar {
+  background-color: var(--semi-color-bg-1);
+  color: #333;
+  user-select: none;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  border-bottom: 1px solid var(--semi-color-border);
+
+  &-logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    .logo-image {
+      height: 40px;
+      margin-top: 6px;
+    }
+    .logo-text {
+      border-left: 1px solid var(--semi-color-text-2);
+      padding-left: 15px;
+      color: var(--semi-color-text-2);
+    }
+  }
+}
