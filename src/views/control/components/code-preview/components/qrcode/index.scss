@@ -1,0 +1,65 @@
+.qrcode {
+  --padding: 14px;
+
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: var(--padding);
+  padding-bottom: 0;
+  border: 1px solid transparent;
+
+  &.active {
+    border-color: var(--semi-color-primary);
+  }
+
+  &-title {
+    font-size: 16px;
+    color: #111;
+    margin-top: 20px;
+  }
+
+  &-desc {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  &-time {
+    margin: 15px 0;
+    font-size: 12px;
+    color: #999;
+  }
+
+  &-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--semi-color-border);
+    margin: 0 calc(var(--padding) * -1);
+    user-select: none;
+    cursor: pointer;
+
+    &-item {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: lighter;
+      color: #333;
+      padding: 10px 0 var(--padding) 0;
+
+      .haha-a-ziyuan837 {
+        font-size: 13px;
+        padding-top: 2px;
+      }
+
+      .haha-fuzhi1 {
+        font-size: 19px;
+        padding-top: 2px;
+      }
+    }
+  }
+}

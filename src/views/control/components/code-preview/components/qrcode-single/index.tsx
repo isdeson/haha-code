@@ -1,0 +1,77 @@
+import { QRCodeSVG } from 'qrcode.react'
+import { useRef } from 'react'
+import useQrCode from '../../use-qrcode'
+import { useSize } from 'ahooks'
+import { LOGO_BASE64 } from '../../../../constants'
+import { useControlContext } from '../../../../control-context'
+import { formatTime } from '@/views/control/utils'
+
+import './index.scss'
+
+const QrCodeSingle = () => {
+  const qrCodeRef = useRef(null)
+  const { copyQrCode, downloadQrCode } = useQrCode()
+
+  const containerRef = useRef(null)
+  const containerSize = useSize(containerRef)
+  const qrCodeSize = Math.max(125, Number(containerSize?.width || '') - 14 * 2)
+
+  const { activeQrCode } = useControlContext()
+  const { name, content, updatedAt = '', createdAt = '' } = activeQrCode || {}
+
+  return (
+    <div className="qrcode-single">
+      <div className="qrcode-single-main">
+        <div className="qrcode-single-code" ref={containerRef}>
+          <QRCodeSVG
+            ref={qrCodeRef}
+            value={content || ''}
+            size={qrCodeSize}
+            bgColor={'#ffffff'}
+            fgColor={'#111111'}
+            level={'H'}
+            imageSettings={{
+              src: LOGO_BASE64.haha || '',
+              height: 60,
+              width: 60,
+              excavate: false,
+            }}
+          />
+        </div>
+        <div className="qrcode-single-infos">
+          <div className="qrcode-single-title">{name || '未命名二维码'}</div>
+          <div className="qrcode-single-desc">{content || '暂无内容'}</div>
+          <div className="qrcode-single-time">{formatTime(updatedAt || createdAt)}更新</div>
+        </div>
+      </div>
+      <div className="qrcode-single-tools">
+        <div
+          className="qrcode-single-tools-item"
+          title="复制"
+          onClick={() =>
+            copyQrCode(qrCodeRef, name, 300, {
+              title: name,
+              titlePosition: 'bottom',
+            })
+          }
+        >
+          <i className="iconfont haha-fuzhi1"></i>
+        </div>
+        <div
+          className="qrcode-single-tools-item"
+          title="下载"
+          onClick={() =>
+            downloadQrCode?.(qrCodeRef, name, 300, {
+              title: name,
+              titlePosition: 'bottom',
+            })
+          }
+        >
+          <i className="iconfont haha-xiazai"></i>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default QrCodeSingle

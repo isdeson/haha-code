@@ -3,7 +3,8 @@ import { Outlet } from 'react-router-dom'
 import './App.scss'
 import appSetting from '@configs'
 import { setWebTitle } from './utils'
-import Navbar from './components/navbar'
+
+import './App.scss'
 
 function App() {
   useEffect(() => {
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <div className="app">
-      <Navbar />
+      <nav>{/* <Navbar /> */}</nav>
       <main>
         <Outlet />
       </main>

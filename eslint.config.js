@@ -27,6 +27,7 @@ export default defineConfig([
     rules: {
       'prettier/prettier': 'error',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'react-refresh/only-export-components': 'off',
     },
   },
   prettierConfig,

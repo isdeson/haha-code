@@ -1,0 +1,18 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  outline: none;
+  word-break: break-all;
+
+  nav {
+    flex-shrink: 0;
+  }
+
+  main {
+    flex: 1;
+    overflow: hidden;
+  }
+}

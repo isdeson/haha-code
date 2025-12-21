@@ -1,0 +1,36 @@
+.preview-modal {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  &-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: s;
+    padding-left: 20px;
+    line-height: 1.25;
+    overflow: hidden;
+    word-break: break-all;
+
+    .qrcode-title {
+      font-size: 20px;
+      margin-top: 0;
+    }
+
+    .qrcode-desc {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .qrcode-time {
+      font-size: 14px;
+      margin-top: 30px;
+    }
+
+    .qrcode-tools {
+      padding: 10px 0;
+    }
+  }
+}

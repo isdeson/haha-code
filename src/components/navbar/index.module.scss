@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 40px;
+  padding: 16px;
   border-bottom: 1px solid var(--semi-color-border);
 
   &-logo-wrapper {
@@ -15,7 +15,6 @@
     gap: 15px;
     .logo-image {
       height: 40px;
-      margin-top: 6px;
     }
     .logo-text {
       border-left: 1px solid var(--semi-color-text-2);

@@ -1,0 +1,20 @@
+.code-setting {
+  transition: width 0.3s ease-in-out;
+
+  .module-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 20px 0;
+    color: #181818;
+  }
+
+  .form-item {
+    background-color: #f2f3f4;
+    border-radius: 8px;
+  }
+
+  .semi-form-field-label {
+    font-weight: normal;
+    color: #333;
+  }
+}
