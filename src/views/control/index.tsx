@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Input } from '@douyinfe/semi-ui'
-import { IconDownload, IconPlusStroked, IconSearch } from '@douyinfe/semi-icons'
+import { IconPlusStroked, IconSearch, IconSync, IconUndo } from '@douyinfe/semi-icons'
 import { ControlProvider, useControlContext } from './control-context'
 import CodeList from './components/code-list'
 import CodeSetting from './components/code-setting'
@@ -66,13 +66,26 @@ const ControlContent: React.FC = () => {
           <img src={logo} alt="app-logo" />
         </div>
         <div className="app-settings">
-          <Button
-            className="import-code-button"
-            size="large"
-            block
-            icon={<IconDownload size="large" />}
-            onClick={importOldDatas}
-          />
+          <div className="app-settings-tool-buttons">
+            <Button
+              className="back-old-version-button"
+              size="large"
+              block
+              type="tertiary"
+              icon={<IconUndo />}
+              onClick={() => (window.location.href = 'https://isdeson.github.io/easy-code/')}
+              title="回到旧版"
+            />
+            <Button
+              className="import-code-button"
+              size="large"
+              block
+              type="tertiary"
+              icon={<IconSync />}
+              onClick={importOldDatas}
+              title="导入旧版数据"
+            />
+          </div>
           <Button
             className="add-code-button"
             theme="solid"
@@ -81,6 +94,7 @@ const ControlContent: React.FC = () => {
             block
             icon={<IconPlusStroked />}
             onClick={handleAddCode}
+            title="添加二维码"
           />
         </div>
       </div>

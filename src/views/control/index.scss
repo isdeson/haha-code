@@ -44,6 +44,24 @@
         background-color: transparent;
         border-radius: 8px;
       }
+
+      .app-settings-tool-buttons {
+        display: flex;
+        gap: 12px;
+        flex-direction: column;
+        margin-bottom: 10px;
+        font-size: 20px;
+
+        .semi-button {
+          background-color: #f2f3f4;
+
+          .semi-icon-default {
+            font-size: 13px;
+            font-weight: normal;
+            color: #666;
+          }
+        }
+      }
     }
   }
 

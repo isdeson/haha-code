@@ -114,6 +114,12 @@ const Guide = () => {
         visible={guideVisible}
         steps={[
           {
+            target: document.querySelector('.add-code-button') as HTMLElement,
+            title: '新增二维码',
+            description: '点击“+”，即可新增二维码',
+            position: 'right',
+          },
+          {
             target: document.querySelector('.import-code-button') as HTMLElement,
             title: '导入旧版本二维码',
             description:
@@ -121,9 +127,9 @@ const Guide = () => {
             position: 'right',
           },
           {
-            target: document.querySelector('.add-code-button') as HTMLElement,
-            title: '新增二维码',
-            description: '点击“+”，即可新增二维码',
+            target: document.querySelector('.back-old-version-button') as HTMLElement,
+            title: '回到旧版二维码',
+            description: '使用不满意？点击即可回到旧版二维码',
             position: 'right',
           },
           {
@@ -162,30 +168,30 @@ const Guide = () => {
             description: '支持单码/多码预览模式切换，可根据实际需求选择预览模式',
             position: 'left',
           },
-          {
-            target: document.querySelector(
-              '.code-preview__multi .qrcode:first-of-type .qrcode-tools-item:nth-of-type(1) .iconfont',
-            ) as HTMLElement,
-            title: '放大二维码',
-            description: '点击可放大查看二维码信息',
-            position: 'bottom',
-          },
-          {
-            target: document.querySelector(
-              '.code-preview__multi .qrcode:first-of-type .qrcode-tools-item:nth-of-type(2) .iconfont',
-            ) as HTMLElement,
-            title: '复制二维码',
-            description: '点击可将二维码复制至剪切板',
-            position: 'bottom',
-          },
-          {
-            target: document.querySelector(
-              '.code-preview__multi .qrcode:first-of-type .qrcode-tools-item:nth-of-type(3) .iconfont',
-            ) as HTMLElement,
-            title: '下载二维码',
-            description: '点击可下载二维码',
-            position: 'bottom',
-          },
+          // {
+          //   target: document.querySelector(
+          //     '.code-preview__multi .qrcode:first-of-type .qrcode-tools-item:nth-of-type(1) .iconfont',
+          //   ) as HTMLElement,
+          //   title: '放大二维码',
+          //   description: '点击可放大查看二维码信息',
+          //   position: 'bottom',
+          // },
+          // {
+          //   target: document.querySelector(
+          //     '.code-preview__multi .qrcode:first-of-type .qrcode-tools-item:nth-of-type(2) .iconfont',
+          //   ) as HTMLElement,
+          //   title: '复制二维码',
+          //   description: '点击可将二维码复制至剪切板',
+          //   position: 'bottom',
+          // },
+          // {
+          //   target: document.querySelector(
+          //     '.code-preview__multi .qrcode:first-of-type .qrcode-tools-item:nth-of-type(3) .iconfont',
+          //   ) as HTMLElement,
+          //   title: '下载二维码',
+          //   description: '点击可下载二维码',
+          //   position: 'bottom',
+          // },
         ]}
         onFinish={() => {
           setGuideVisible(false)

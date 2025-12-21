@@ -20,4 +20,6 @@ const routes: RouteObject[] = [
   },
 ]
 
-export const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter(routes)
+export const router = createBrowserRouter(routes, {
+  basename: '/haha-code',
+})
