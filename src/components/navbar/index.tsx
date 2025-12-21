@@ -3,7 +3,7 @@ import appSetting from '@configs'
 import logo from '@/assets/images/logo.png'
 
 const Navbar = () => {
-  const { name, desc } = appSetting
+  const { name } = appSetting
 
   return (
     <div className={`${styles['navbar']}`}>
