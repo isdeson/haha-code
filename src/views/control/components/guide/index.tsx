@@ -27,12 +27,13 @@ const Guide = () => {
   return (
     <>
       <Modal
+        className="guide-modal"
         centered
         header={null}
         visible={!isFinishGuide && (modalVisible || isFinishTipGuide)}
         footer={false}
       >
-        <div className={`guide-modal ${isFinishTipGuide ? 'success' : ''}`}>
+        <div className={`guide-modal-content ${isFinishTipGuide ? 'success' : ''}`}>
           <video
             className="guide-video"
             src={videoSrc}

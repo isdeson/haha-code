@@ -1,83 +1,105 @@
 .guide-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 0 20px 0;
-  position: relative;
-  background-color: #fefefe;
-
-  &.success {
-    background: url('../../../../assets/images/success.gif') no-repeat top center;
-    background-size: 100% 150%;
-    padding-bottom: 40px;
+  .semi-modal-content {
+    background-color: #fefefe;
   }
 
-  .guide-video {
-    margin-bottom: 30px;
-  }
+  .guide-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0 20px 0;
+    position: relative;
+    background-color: #fefefe;
 
-  h1,
-  h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 10px;
-    animation-name: textAni;
-    animation-duration: 3s;
-    animation-timing-function: cubic-bezier(0, 0, 0.5, 1);
-    animation-iteration-count: 1;
-    animation-direction: normal;
-    animation-fill-mode: both;
-    line-height: 1.25;
-    text-align: center;
-  }
+    &.success {
+      padding-bottom: 40px;
 
-  h2 {
-    font-size: 16px;
-  }
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url('../../../../assets/images/success.gif') no-repeat top center;
+        background-size: 100% 150%;
+      }
+    }
 
-  .footer-buttons {
-    width: 100%;
-    margin-top: 40px;
+    .guide-video {
+      margin-bottom: 30px;
+    }
 
-    .semi-button {
+    h1,
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
       margin-top: 10px;
-      border-radius: 8px;
-    }
-  }
-
-  .flow-text {
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    background-size: 400% 100%;
-    background-image: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #33cc33, #3399ff, #9933ff);
-    animation: hue-flow 3s linear infinite;
-  }
-
-  // 呼吸渐变
-  @keyframes hue-flow {
-    from {
-      filter: hue-rotate(0deg);
+      animation-name: textAni;
+      animation-duration: 3s;
+      animation-timing-function: cubic-bezier(0, 0, 0.5, 1);
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      animation-fill-mode: both;
+      line-height: 1.25;
+      text-align: center;
     }
 
-    to {
-      filter: hue-rotate(360deg);
+    h2 {
+      font-size: 16px;
     }
-  }
 
-  // 缓入动画
-  @keyframes textAni {
-    0.00% {
-      transform: translateY(18px);
-      opacity: 0;
+    .footer-buttons {
+      width: 100%;
+      margin-top: 40px;
+      position: relative;
+      z-index: 10;
+
+      .semi-button {
+        margin-top: 10px;
+        border-radius: 8px;
+      }
     }
-    50% {
-      opacity: 1;
+
+    .flow-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 400% 100%;
+      background-image: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff9900,
+        #ffff00,
+        #33cc33,
+        #3399ff,
+        #9933ff
+      );
+      animation: hue-flow 3s linear infinite;
     }
-    100.00% {
-      transform: translateY(0px);
-      opacity: 1;
+
+    // 呼吸渐变
+    @keyframes hue-flow {
+      from {
+        filter: hue-rotate(0deg);
+      }
+
+      to {
+        filter: hue-rotate(360deg);
+      }
+    }
+
+    // 缓入动画
+    @keyframes textAni {
+      0.00% {
+        transform: translateY(18px);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100.00% {
+        transform: translateY(0px);
+        opacity: 1;
+      }
     }
   }
 }
