@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>加载中...</title>
+
+  <style>
+    .loading {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      color: #666;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      position: fixed;
+      inset: 0;
+    }
+
+    @keyframes breathe {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(0.85);
+        opacity: 0.75;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .loading-logo {
+      display: flex;
+      width: 133px;
+      height: 133px;
+      position: relative;
+      transform: scale(0.4);
+
+      --line-background: #3b82f6;
+    }
+
+    .line-x {
+      width: 100%;
+      height: 19px;
+      background-color: var(--line-background);
+    }
+
+    .line-y {
+      width: 19px;
+      height: 100%;
+      background-color: var(--line-background);
+    }
+
+    .rectangle {
+      animation: breathe 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+      transform: scale(1);
+    }
+
+    .rectangle-left {
+      width: 57px;
+      height: 114px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation-delay: 0s;
+      transform-origin: right center;
+    }
+
+    .rectangle-right-top,
+    .rectangle-right-bottom {
+      width: 57px;
+      height: 57px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      animation-delay: 0.4s;
+      transform-origin: left top;
+    }
+
+    .rectangle-right-top {
+      top: 0;
+      bottom: unset;
+      animation-delay: 0.2s;
+      transform-origin: left bottom;
+    }
+
+    .rectangle-right-top .line:nth-child(1) {
+      width: calc(100% - 19px * 2);
+    }
+
+    .rectangle-right-top .line:nth-child(3) {
+      height: calc(100% - 19px);
+    }
+
+    .rectangle-right-top .line:nth-child(4) {
+      height: calc(100% - 19px);
+    }
+
+
+    .line:nth-child(1) {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .line:nth-child(2) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .line:nth-child(3) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .line:nth-child(4) {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-CtToxcL9.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-other-DhH8YAY1.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-react-CnGb1ob7.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-semi-CGhBi5sD.js">
+  <link rel="modulepreload" crossorigin href="/assets/utils-Dv_eICzA.js">
+  <link rel="stylesheet" crossorigin href="/assets/vendor-semi-BaOxNCBc.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-DCjvERfE.css">
+</head>
+
+<body>
+  <div id="root">
+    <div class="loading">
+      <div class="loading-logo">
+        <div class="rectangle rectangle-left">
+          <div class="line line-x"></div>
+          <div class="line line-x"></div>
+          <div class="line line-y"></div>
+          <div class="line line-y"></div>
+        </div>
+        <div class="rectangle rectangle-right-top">
+          <div class="line line-x"></div>
+          <div class="line line-x"></div>
+          <div class="line line-y"></div>
+          <div class="line line-y"></div>
+        </div>
+        <div class="rectangle rectangle-right-bottom">
+          <div class="line line-x"></div>
+          <div class="line line-x"></div>
+          <div class="line line-y"></div>
+          <div class="line line-y"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
