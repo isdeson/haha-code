@@ -2,21 +2,22 @@
   display: flex;
   justify-content: space-between;
   height: 100%;
-  background-color: #f2f3f4;
+  background-color: #f6f7f8;
 
   .setting-wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 16px;
+    padding: 16px 10px;
     border-right: 1px solid var(--semi-color-border);
     user-select: none;
     background-color: #fff;
 
     .app-logo {
-      width: 40px;
-      height: 40px;
+      width: 32px;
+      height: 32px;
+      margin-left: 4px;
 
       img {
         width: 100%;
@@ -32,14 +33,6 @@
       flex-direction: column;
       gap: 20px;
 
-      .add-code-button {
-        width: 45px;
-        height: 40px;
-        background: linear-gradient(45deg, #077bfe, #009dff);
-        color: #fff;
-        border-radius: 8px;
-      }
-
       .semi-button {
         background-color: transparent;
         border-radius: 8px;
@@ -53,7 +46,7 @@
         font-size: 20px;
 
         .semi-button {
-          background-color: #f2f3f4;
+          background-color: #f6f7f8;
 
           .semi-icon-default {
             font-size: 13px;
@@ -80,10 +73,18 @@
     flex-direction: column;
     gap: 20px;
     background-color: #fff;
+    position: relative;
 
-    .searcher-input {
-      background-color: #f2f3f4;
+    .add-code-button {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      width: calc(100% - 28px);
+      height: 40px;
+      background: linear-gradient(45deg, #077bfe, #009dff);
+      color: #fff;
       border-radius: 8px;
+      z-index: 1;
     }
   }
 

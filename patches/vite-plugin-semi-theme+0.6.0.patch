@@ -1,0 +1,13 @@
+diff --git a/node_modules/vite-plugin-semi-theme/index.js b/node_modules/vite-plugin-semi-theme/index.js
+index eb7203f..769825a 100644
+--- a/node_modules/vite-plugin-semi-theme/index.js
++++ b/node_modules/vite-plugin-semi-theme/index.js
+@@ -55,7 +55,7 @@ module.exports = function ({ theme, options = {} }) {
+                     return new URL(
+                       url.substring(1),
+                       pathToFileURL(
+-                        scssFilePath.match(/^(\S*\/node_modules\/)/)[0]
++                        scssFilePath.match(/^(.*\/node_modules\/)/)[0]
+                       )
+                     );
+                   }

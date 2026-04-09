@@ -1,37 +1,29 @@
 import React from 'react'
-import { Button, Input } from '@douyinfe/semi-ui'
-import { IconPlusStroked, IconSearch, IconSync, IconUndo } from '@douyinfe/semi-icons'
+import { Button } from '@douyinfe/semi-ui'
+import { IconPlusStroked, IconSync, IconUndo } from '@douyinfe/semi-icons'
 import { ControlProvider, useControlContext } from './control-context'
 import CodeList from './components/code-list'
 import CodeSetting from './components/code-setting'
-import logo from '@/assets/images/logo.png'
+import logo from '@/assets/images/logo-text.png'
 import { IconDoubleChevronLeft, IconDoubleChevronRight } from '@douyinfe/semi-icons'
 import CodePreview from './components/code-preview'
+import GroupSidebar from './components/group-sidebar'
 import { generateUUID } from './utils'
 import dayjs from 'dayjs'
 import Guide from './components/guide'
+import Changelog from '@/components/changelog'
 
 import './index.scss'
 
 const ControlContent: React.FC = () => {
   const { setCodeList, setting, setSetting, activeQrCode, importOldDatas } = useControlContext()
-  const { isFold, searchKeyWords } = setting || {}
-  const handleFold = () => {
-    setSetting((prev) => {
-      return {
-        ...prev,
-        isFold: !(prev || {}).isFold,
-      }
-    })
-  }
+  const { isFold } = setting || {}
 
-  const handleSearch = (value: string) => {
-    setSetting((prev) => {
-      return {
-        ...prev,
-        searchKeyWords: value.trim(),
-      }
-    })
+  const handleFold = () => {
+    setSetting((prev) => ({
+      ...prev,
+      isFold: !(prev || {}).isFold,
+    }))
   }
 
   const handleAddCode = () => {
@@ -39,24 +31,18 @@ const ControlContent: React.FC = () => {
       id: generateUUID(),
       name: '',
       content: '',
+      groupId: setting?.activeGroupId || undefined,
       createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     }
-    setCodeList((prev) => {
-      return [newCode, ...(prev || [])]
-    })
-    setSetting((prev) => {
-      return {
-        ...prev,
-        activeQrCodeId: newCode.id,
-      }
-    })
-    // 滚动列表到顶部
+    setCodeList((prev) => [newCode, ...(prev || [])])
+    setSetting((prev) => ({
+      ...prev,
+      activeQrCodeId: newCode.id,
+      searchKeyWords: '',
+    }))
     const qrCodeParent = document.querySelector('.code-list')
-    qrCodeParent?.scrollTo({
-      top: 0,
-      // behavior: 'smooth',
-    })
+    qrCodeParent?.scrollTo({ top: 0 })
   }
 
   return (
@@ -86,29 +72,21 @@ const ControlContent: React.FC = () => {
               title="导入旧版数据"
             />
           </div>
-          <Button
-            className="add-code-button"
-            theme="solid"
-            type="primary"
-            size="large"
-            block
-            icon={<IconPlusStroked />}
-            onClick={handleAddCode}
-            title="添加二维码"
-          />
         </div>
       </div>
+      <GroupSidebar />
       <div className="code-list-wrapper">
-        <Input
-          className="searcher-input"
-          prefix={<IconSearch />}
-          showClear
-          size="large"
-          placeholder="输入关键词搜索二维码"
-          onChange={(value) => handleSearch(value)}
-          value={searchKeyWords}
-        />
         <CodeList />
+        <Button
+          className="add-code-button"
+          theme="solid"
+          type="primary"
+          size="large"
+          block
+          icon={<IconPlusStroked />}
+          onClick={handleAddCode}
+          title="添加二维码"
+        />
       </div>
       {activeQrCode?.id && (
         <div className={`code-setting-wrapper ${isFold ? 'code-setting-wrapper__fold' : ''}`}>
@@ -130,6 +108,7 @@ const Control: React.FC = () => {
     <ControlProvider>
       <ControlContent />
       <Guide />
+      <Changelog />
     </ControlProvider>
   )
 }

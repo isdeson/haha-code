@@ -18,23 +18,26 @@ const QrCodeSingle = () => {
 
   const { activeQrCode } = useControlContext()
   const { name, content, updatedAt = '', createdAt = '' } = activeQrCode || {}
+  const qrConfig = activeQrCode?.qrConfig || {}
+  const logoSize = Number(qrConfig.logoSize) || 60
 
   return (
     <div className="qrcode-single">
       <div className="qrcode-single-main">
         <div className="qrcode-single-code" ref={containerRef}>
           <QRCodeSVG
+            key={JSON.stringify(qrConfig)}
             ref={qrCodeRef}
             value={content || ''}
             size={qrCodeSize}
-            bgColor={'#ffffff'}
-            fgColor={'#111111'}
-            level={'H'}
+            bgColor={qrConfig.bgColor || '#ffffff'}
+            fgColor={qrConfig.fgColor || '#111111'}
+            level={qrConfig.level || 'H'}
             imageSettings={{
-              src: LOGO_BASE64.haha || '',
-              height: 60,
-              width: 60,
-              excavate: false,
+              src: qrConfig.logo || LOGO_BASE64.haha || '',
+              height: logoSize,
+              width: logoSize,
+              excavate: qrConfig.logoExcavate ?? true,
             }}
           />
         </div>

@@ -1,5 +1,5 @@
-import { createContext, useContext, type ReactNode } from 'react'
-import type { IControlContext, IQRCode, IQrCodeSetting } from './types'
+import { createContext, useContext, useEffect, type ReactNode } from 'react'
+import type { IControlContext, IQRCode, IQRCodeGroup, IQrCodeSetting } from './types'
 import { useLocalStorageState } from 'ahooks'
 import dayjs from 'dayjs'
 import { generateUUID } from './utils'
@@ -17,12 +17,20 @@ export const ControlProvider = ({ children }: ControlProviderProps) => {
       {
         id: 'example',
         name: '示例二维码',
-        content: 'https://www.baidu.com',
+        content: 'https://www.baidu.com/hello-haha?container=flutter&showSafeArea=true',
         createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       },
     ],
   })
+
+  const [groupList, setGroupList] = useLocalStorageState<IQRCodeGroup[]>(
+    'haha-qr-code-group-list',
+    {
+      defaultValue: [],
+    },
+  )
+
   const [setting, setSetting] = useLocalStorageState<IQrCodeSetting>('haha-qr-code-setting', {
     defaultValue: {
       viewMode: 'single',
@@ -31,6 +39,25 @@ export const ControlProvider = ({ children }: ControlProviderProps) => {
   })
 
   const activeQrCode = codeList.find((item) => item.id === setting.activeQrCodeId)
+
+  // 过滤逻辑：先按分组筛选，再按关键词搜索
+  const filteredCodeList = codeList?.filter((item) => {
+    const keyword = setting?.searchKeyWords?.trim()
+    const groupId = setting?.activeGroupId
+    const matchGroup = groupId ? item.groupId === groupId : true
+    const matchKeyword = keyword ? item.name?.includes(keyword) : true
+    return matchGroup && matchKeyword
+  })
+
+  // 当前选中的二维码不在过滤结果中时，自动切换到第一个
+  useEffect(() => {
+    if (
+      filteredCodeList?.length > 0 &&
+      !filteredCodeList.some((item) => item.id === setting?.activeQrCodeId)
+    ) {
+      setSetting((prev) => ({ ...prev, activeQrCodeId: filteredCodeList[0].id }))
+    }
+  }, [filteredCodeList?.length, setting?.searchKeyWords, setting?.activeGroupId])
 
   /** 导入旧版数据 */
   const importOldDatas = () => {
@@ -72,18 +99,34 @@ export const ControlProvider = ({ children }: ControlProviderProps) => {
     })
   }
 
+  const [quickParams, setQuickParams] = useLocalStorageState<[string, string][]>(
+    'haha-qr-code-quick-params',
+    {
+      defaultValue: [
+        ['container', 'flutter'],
+        ['showSafeArea', 'true'],
+        ['nativeWeb', 'true'],
+        ['debug', 'true'],
+        ['env', 'fat'],
+        ['timestamp', ''],
+      ],
+    },
+  )
+
   return (
     <ControlContext.Provider
       value={{
         codeList,
-        filteredCodeList: codeList?.filter((item) =>
-          setting?.searchKeyWords ? item.name?.includes(setting?.searchKeyWords || '') : true,
-        ),
+        filteredCodeList,
         setCodeList,
+        groupList,
+        setGroupList,
         setting,
         setSetting,
         activeQrCode,
         importOldDatas,
+        quickParams,
+        setQuickParams,
       }}
     >
       {children}

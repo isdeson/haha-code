@@ -13,7 +13,7 @@ import Empty from '@/components/empty'
 import './index.scss'
 
 const CodePreview: React.FC = () => {
-  const { codeList, filteredCodeList, setting, setSetting, activeQrCode } = useControlContext()
+  const { filteredCodeList, setting, setSetting, activeQrCode } = useControlContext()
   const { viewMode = 'single' } = setting
 
   const onViewModeRadioChange = (e: RadioChangeEvent) => {
@@ -36,7 +36,7 @@ const CodePreview: React.FC = () => {
         <div className="code-preview__header-title">
           <span className="view-type">{setting.viewMode === 'single' ? '单码' : '多码'}预览</span>
           <span>
-            共<span className="count">{codeList?.length}</span>个二维码
+            共<span className="count">{filteredCodeList?.length}</span>个二维码
           </span>
         </div>
         <RadioGroup

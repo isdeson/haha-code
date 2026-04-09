@@ -134,7 +134,7 @@ const Guide = () => {
             position: 'right',
           },
           {
-            target: document.querySelector('.searcher-input') as HTMLElement,
+            target: document.querySelector('.code-list-search') as HTMLElement,
             title: '搜索二维码',
             description: '输入关键词，可进行二维码搜索，快速找到目标二维码',
             position: 'left',
@@ -150,6 +150,26 @@ const Guide = () => {
             title: '编辑二维码',
             description: '在左侧二维码列表区域，选中需要编辑的二维码，即可在此实时编辑二维码信息',
             position: 'right',
+          },
+          {
+            target: document.querySelector('.group-sidebar') as HTMLElement,
+            title: '分组管理',
+            description: '支持创建分组对二维码进行分类管理，拖拽二维码到分组即可归类',
+            position: 'right',
+          },
+          {
+            target: document.querySelector('.code-setting-url__header') as HTMLElement,
+            title: 'URL 管理',
+            description:
+              '当二维码内容为 URL 时，可在此管理协议、域名、端口、路径和参数，支持快捷参数一键添加',
+            position: 'bottom',
+          },
+          {
+            target: document.querySelector('.code-setting-advanced__header') as HTMLElement,
+            title: '高级设置',
+            description:
+              '可自定义二维码前景色、背景色、纠错等级，以及 Logo 图片、大小和挖空背景等样式配置',
+            position: 'bottom',
           },
           {
             target: document.querySelector('.fold-button') as HTMLElement,
@@ -193,7 +213,7 @@ const Guide = () => {
           //   description: '点击可下载二维码',
           //   position: 'bottom',
           // },
-        ]}
+        ].filter((step) => step.target)}
         onFinish={() => {
           setGuideVisible(false)
           setIsFinishTipGuide(true)
