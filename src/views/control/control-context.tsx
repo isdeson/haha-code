@@ -57,6 +57,7 @@ export const ControlProvider = ({ children }: ControlProviderProps) => {
     ) {
       setSetting((prev) => ({ ...prev, activeQrCodeId: filteredCodeList[0].id }))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredCodeList?.length, setting?.searchKeyWords, setting?.activeGroupId])
 
   /** 导入旧版数据 */

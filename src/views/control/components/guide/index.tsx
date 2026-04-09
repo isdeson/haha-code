@@ -213,7 +213,7 @@ const Guide = () => {
           //   description: '点击可下载二维码',
           //   position: 'bottom',
           // },
-        ].filter((step) => step.target)}
+        ].filter((step) => step.target) as React.ComponentProps<typeof UserGuide>['steps']}
         onFinish={() => {
           setGuideVisible(false)
           setIsFinishTipGuide(true)

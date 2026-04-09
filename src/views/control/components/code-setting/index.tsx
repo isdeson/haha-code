@@ -112,6 +112,7 @@ const CodeSetting: React.FC = () => {
     if (formRef.current && activeQrCode?.id) {
       formRef.current.formApi.setValues({ ...activeQrCode })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeQrCodeId])
 
   const isInternalUpdate = useRef(false)
