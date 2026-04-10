@@ -67,3 +67,41 @@ npm run format
 │       └── setting/  # 设置页
 └── vite.config.ts    # Vite 配置
 ```
+
+## API
+
+### URL 参数快速生成二维码
+
+通过 URL 参数 `codeContent` 可直接跳转并自动生成二维码，适用于外部系统集成、分享链接等场景。
+
+**格式：**
+
+```
+https://isdeson.github.io/haha-code/?codeContent={编码后的内容}
+```
+
+**参数说明：**
+
+| 参数 | 必填 | 说明 |
+| --- | --- | --- |
+| `codeContent` | 是 | 二维码内容，值需要经过 `encodeURIComponent` 编码 |
+
+**支持的内容类型：** URL、纯文本、JSON 等任意字符串。
+
+**示例：**
+
+```bash
+# URL 链接
+https://isdeson.github.io/haha-code/?codeContent=https%3A%2F%2Fexample.com%3Fa%3D1%26b%3D2
+
+# 纯文本
+https://isdeson.github.io/haha-code/?codeContent=Hello%20World
+```
+
+**JS 拼接示例：**
+
+```js
+const content = 'https://example.com?a=1&b=2'
+const url = `https://isdeson.github.io/haha-code/?codeContent=${encodeURIComponent(content)}`
+window.open(url)
+```

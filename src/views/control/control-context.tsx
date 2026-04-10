@@ -49,6 +49,33 @@ export const ControlProvider = ({ children }: ControlProviderProps) => {
     return matchGroup && matchKeyword
   })
 
+  // 解析 URL 参数 codeContent，自动创建二维码
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const codeContent = params.get('codeContent')
+    if (codeContent) {
+      // URLSearchParams.get() 已自动 decodeURIComponent，无需再次解码
+      // 调用方需确保对 codeContent 值做 encodeURIComponent 编码
+      // 例如: ?codeContent=https%3A%2F%2Fexample.com%3Fa%3D1%26b%3D2
+      const newCode: IQRCode = {
+        id: generateUUID(),
+        name: codeContent.length > 20 ? codeContent.slice(0, 20) + '...' : codeContent,
+        content: codeContent,
+        createdAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      }
+      setCodeList((prev) => [newCode, ...(prev || [])])
+      setSetting((prev) => ({
+        ...prev,
+        activeQrCodeId: newCode.id,
+        searchKeyWords: '',
+      }))
+      // 清除 URL 参数，避免刷新重复创建
+      window.history.replaceState({}, '', window.location.pathname)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   // 当前选中的二维码不在过滤结果中时，自动切换到第一个
   useEffect(() => {
     if (
