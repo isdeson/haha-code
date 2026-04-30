@@ -44,7 +44,21 @@ const GroupSidebar: FC = () => {
   const [deleteMode, setDeleteMode] = useState<'release' | 'delete'>('release')
 
   const handleGroupClick = (groupId?: string) => {
-    setSetting((prev) => ({ ...prev, activeGroupId: groupId }))
+    // 批量生码模式下，禁止切换到"全部"分组
+    if (setting?.isBatchMode && !groupId) {
+      Toast.warning('批量生码模式下不可切换到全部分组')
+      return
+    }
+    // 批量生码模式下切换分组，同步更新 batchGroupId
+    if (setting?.isBatchMode && groupId) {
+      setSetting((prev) => ({
+        ...prev,
+        activeGroupId: groupId,
+        batchGroupId: groupId,
+      }))
+    } else {
+      setSetting((prev) => ({ ...prev, activeGroupId: groupId }))
+    }
   }
 
   const openEditModal = (groupId: string) => {

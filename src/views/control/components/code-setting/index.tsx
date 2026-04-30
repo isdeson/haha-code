@@ -147,10 +147,19 @@ const CodeSetting: React.FC = () => {
 
   const handleFormValueChange = (value: IQRCode) => {
     if (isInternalUpdate.current) return
+    // 当内容变化时，重新提取 URL 参数以保持 URL 管理区域与内容双向同步
+    const parsedNew = value.content ? parseUrlBase(value.content) : { valid: false }
+    const newUrlParams = parsedNew.valid ? extractParams(value.content!) : undefined
     setCodeList((prev) =>
       (prev || []).map((item) =>
         item.id === activeQrCodeId
-          ? { ...item, name: value.name, content: value.content, updatedAt: now() }
+          ? {
+              ...item,
+              name: value.name,
+              content: value.content,
+              urlParams: newUrlParams,
+              updatedAt: now(),
+            }
           : item,
       ),
     )

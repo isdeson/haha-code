@@ -57,6 +57,12 @@ export interface IQrCodeSetting {
   activeQrCodeId?: string
   /** 当前选中的分组id，undefined 表示"全部" */
   activeGroupId?: string
+  /** 是否为批量生码模式 */
+  isBatchMode?: boolean
+  /** 批量生码的分组ID */
+  batchGroupId?: string
+  /** 批量生码模式类型：add 新建，edit 编辑 */
+  batchModeType?: 'add' | 'edit'
 }
 
 export interface IControlContext {

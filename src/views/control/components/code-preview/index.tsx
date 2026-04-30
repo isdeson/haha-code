@@ -6,7 +6,7 @@ import { useControlContext } from '../../control-context'
 import type { IQRCode } from '../../types'
 import type { RadioChangeEvent } from '@douyinfe/semi-ui/lib/es/radio'
 import QrCodeSingle from './components/qrcode-single'
-import emptyImage from '@/assets/images/empty1.png'
+import emptyImage from '@/assets/images/empty.png'
 import { useSyncScroll } from '../../use-sync-scroll'
 import Empty from '@/components/empty'
 
@@ -54,7 +54,7 @@ const CodePreview: React.FC = () => {
           <Empty
             text="暂无二维码，点击左侧区域选择需要预览的二维码"
             image={emptyImage}
-            imageSize={150}
+            imageSize={130}
           />
         ) : (
           <>

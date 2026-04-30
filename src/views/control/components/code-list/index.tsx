@@ -119,15 +119,12 @@ const CodeList: FC = () => {
       <div className="code-list-title">
         <div className="code-list-title__left">
           <div className="code-list-title__text">
-            {activeGroup?.name ? `「${activeGroup.name}」二维码` : '全部二维码'}
+            {activeGroup?.name ? `${activeGroup.name}` : '全部二维码'}
           </div>
           <img className="code-list-title__line" src={linePng} alt="" />
         </div>
         {!batchMode && (
-          <IconEditStroked
-            className="code-list-title__action"
-            onClick={() => setBatchMode(true)}
-          />
+          <IconEditStroked className="code-list-title__action" onClick={() => setBatchMode(true)} />
         )}
       </div>
       <Input
@@ -176,11 +173,7 @@ const CodeList: FC = () => {
                   />
                 )}
                 {groupName && !setting?.activeGroupId && !batchMode && (
-                  <Tag
-                    className="code-list-item__group-tag"
-                    size="small"
-                    type="ghost"
-                  >
+                  <Tag className="code-list-item__group-tag" size="small" type="ghost">
                     {groupName.slice(0, 2)}
                   </Tag>
                 )}
@@ -198,7 +191,10 @@ const CodeList: FC = () => {
                   </div>
                 </div>
                 {!batchMode && (
-                  <div className="code-list-item__actions" onClick={(e) => handleDelete(e, item.id)}>
+                  <div
+                    className="code-list-item__actions"
+                    onClick={(e) => handleDelete(e, item.id)}
+                  >
                     <IconDeleteStroked />
                   </div>
                 )}

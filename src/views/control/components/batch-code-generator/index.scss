@@ -1,0 +1,365 @@
+.batch-code-generator {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f6f7f8;
+  overflow: hidden;
+
+  --cell-height: 170px;
+
+
+  /**
+   * 标题栏
+   */
+  .batch-generator-title-bar {
+    flex-shrink: 0;
+    margin: 10px 0 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .batch-generator-title-left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .batch-generator-title-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .batch-generator-title-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #181818;
+      margin-top: 3px;
+      border-left: 1px solid #ccc;
+      padding-left: 15px;
+    }
+
+    .batch-generator-title-line {
+      display: block;
+      width: 50px;
+      height: auto;
+      margin-top: -2px;
+      margin-left: 15px;
+    }
+
+    .batch-generator-title-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+
+  /**
+   * Excel风格容器
+   */
+  .batch-generator-excel-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  /**
+   * Excel表头 - 浅灰色样式
+   */
+  .batch-generator-excel-header {
+    display: flex;
+    align-items: center;
+    background-color: #fafafa;
+    font-size: 13px;
+    font-weight: 500;
+    color: #595959;
+    flex-shrink: 0;
+
+    .excel-col {
+      padding: 0 8px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      box-sizing: border-box;
+    }
+
+    .excel-col-index {
+      width: 45px;
+      flex-shrink: 0;
+    }
+
+    .excel-col-name {
+      width: 300px;
+      text-align: left;
+      justify-content: flex-start;
+    }
+
+    .excel-col-content {
+      flex: 1;
+      text-align: left;
+      justify-content: flex-start;
+    }
+
+    .excel-col-preview {
+      width: var(--cell-height);
+      flex-shrink: 0;
+    }
+
+    .excel-col-action {
+      width: 145px;
+      flex-shrink: 0;
+    }
+  }
+
+  /**
+   * Excel内容区 - 可滚动，隐藏滚动条
+   */
+  .batch-generator-excel-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #fff;
+
+    /* 隐藏滚动条 */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /**
+     * 空状态
+     */
+    .batch-generator-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 600px;
+      gap: 16px;
+
+      .batch-generator-empty-text {
+        font-size: 14px;
+        color: var(--semi-color-text-2);
+      }
+    }
+  }
+
+  /**
+   * Excel行 - 类似表格行的样式
+   */
+  .batch-generator-excel-row {
+    display: flex;
+    align-items: center;
+    transition: background-color 0.15s ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .excel-cell {
+      padding: 0;
+      height: var(--cell-height);
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .excel-cell-index {
+      width: 45px;
+      flex-shrink: 0;
+      justify-content: center;
+      font-size: 13px;
+      color: #8c8c8c;
+      font-weight: 500;
+    }
+
+    .excel-cell-name {
+      width: 300px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .excel-cell-content {
+      flex: 3;
+      min-width: 400px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    /**
+     * 可编辑单元格 - 支持自动换行，撑满父容器高度
+     */
+    .editable-cell {
+      width: 100%;
+      align-self: stretch;
+      padding: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--semi-color-text-0);
+      word-break: break-all;
+      white-space: pre-wrap;
+      outline: none;
+      box-sizing: border-box;
+
+      &:focus {
+        background: #fff;
+        outline: 1px solid #1890ff;
+        outline-offset: -1px;
+      }
+
+      /* placeholder 效果 */
+      &:empty::before {
+        content: attr(data-placeholder);
+        color: var(--semi-color-text-3);
+        pointer-events: none;
+      }
+    }
+
+    .excel-cell-preview {
+      width: var(--cell-height);
+      height: var(--cell-height);
+      flex-shrink: 0;
+      justify-content: center;
+      padding: 10px;
+
+      /**
+       * 二维码预览区域 - 无边框无悬浮效果
+       */
+      .batch-generator-qrcode-large {
+        display: flex;
+        cursor: pointer;
+        background-color: transparent;
+      }
+
+      .batch-generator-qrcode-empty {
+        font-size: 14px;
+        color: #bfbfbf;
+        background-color: #fafafa;
+        width: calc(var(--cell-height) - 20px);
+        height: calc(var(--cell-height) - 20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .excel-cell-action {
+      width: 145px;
+      flex-shrink: 0;
+      justify-content: center;
+      gap: 12px;
+
+      /* 操作按钮统一灰色图标，无背景 */
+      .semi-button {
+        background: transparent !important;
+        color: #8c8c8c !important;
+
+        &:hover {
+          color: #595959 !important;
+        }
+      }
+    }
+  }
+
+  /**
+   * 底部统计信息
+   */
+  .batch-generator-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    margin-top: 8px;
+    flex-shrink: 0;
+
+    .batch-generator-count {
+      font-size: 13px;
+      color: var(--semi-color-text-1);
+    }
+
+    .batch-generator-tip {
+      font-size: 12px;
+      color: var(--semi-color-text-3);
+    }
+  }
+}
+
+/**
+ * 滚动条样式统一
+ */
+.batch-generator-excel-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.batch-generator-excel-body::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+.batch-generator-excel-body::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 4px;
+}
+
+.batch-generator-excel-body::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
+}
+
+
+.semi-button {
+  border-radius: 8px;
+}
+
+.batch-generator-action-exit {
+  color: #fff !important;
+  background: linear-gradient(45deg, #077bfe, #009dff);
+      color: #fff;
+  border-radius: 8px !important;
+  width: 35px!important;
+  height: 35px!important;
+  padding: 0 !important;
+
+  &:hover {
+      background: linear-gradient(45deg, #077bfe, #009dff);
+      color: #fff;
+  }
+}
+
+/**
+ * 文本解析按钮 - 镂空边框样式
+ */
+.batch-generator-action-parse {
+  border: 1px solid var(--semi-color-primary) !important;
+  color: var(--semi-color-primary) !important;
+  background: transparent !important;
+
+  &:hover {
+    background: rgba(var(--semi-blue-0), 0.1) !important;
+  }
+}
+
+/**
+ * 文本解析弹窗内容
+ */
+.batch-parse-text-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .batch-parse-text-tip {
+    font-size: 13px;
+    color: var(--semi-color-text-2);
+    margin: 0;
+  }
+}

@@ -9,7 +9,7 @@ interface IProps {
   text?: string
 }
 
-const Empty: FC<IProps> = ({ image = empty, text = '暂无数据', imageSize = 70 }) => {
+const Empty: FC<IProps> = ({ image = empty, text = '暂无数据', imageSize = 90 }) => {
   return (
     <div className="empty">
       <img src={image} className="empty__image" style={{ width: imageSize + 'px' }} />
