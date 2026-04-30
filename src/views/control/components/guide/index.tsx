@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Button, Modal, UserGuide } from '@douyinfe/semi-ui'
-import videoSrc from '@/assets/movies/haha-hi.mp4'
 import hiImage from '@/assets/images/hi.png'
 import { useLocalStorageState } from 'ahooks'
 import { useControlContext } from '../../control-context'
