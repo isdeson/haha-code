@@ -145,7 +145,7 @@ const CodeList: FC = () => {
                 : setting?.searchKeyWords?.trim()
                   ? '没找到相关二维码，换个关键词试试吧'
                   : setting?.activeGroupId
-                    ? '该分组暂无二维码，拖拽二维码到分组即可添加'
+                    ? '该分组暂无二维码，拖拽到分组即可添加'
                     : '暂无二维码，点击底部"+"添加一个吧'
             }
           />
