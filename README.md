@@ -2,6 +2,12 @@
 
 二维码管理更快一步。基于 React + Semi Design 构建的二维码生成与管理工具。
 
+<p align="center">
+  <img src="./doc/0.png" alt="哈哈二维码">
+  <img src="./doc/1.png" alt="哈哈二维码">
+  <img src="./doc/3.png" alt="哈哈二维码">
+</p>
+
 ## 技术栈
 
 - React 18 + TypeScript
