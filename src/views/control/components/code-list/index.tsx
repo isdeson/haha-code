@@ -6,7 +6,6 @@ import type { IQRCode } from '../../types'
 import { useSyncScroll } from '../../use-sync-scroll'
 import Empty from '@/components/empty'
 import { formatTime } from '../../utils'
-import linePng from '@/assets/images/line.png'
 
 import './index.scss'
 
@@ -121,7 +120,7 @@ const CodeList: FC = () => {
           <div className="code-list-title__text">
             {activeGroup?.name ? `${activeGroup.name}` : '全部二维码'}
           </div>
-          <img className="code-list-title__line" src={linePng} alt="" />
+          {/* <img className="code-list-title__line" src={linePng} alt="" /> */}
         </div>
         {!batchMode && (
           <IconEditStroked className="code-list-title__action" onClick={() => setBatchMode(true)} />

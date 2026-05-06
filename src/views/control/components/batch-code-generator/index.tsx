@@ -16,7 +16,6 @@ import { LOGO_BASE64 } from '@/views/control/constants'
 import PreviewModal, { type IPreviewModalInstance } from '../code-preview/components/preview-modal/'
 import useQrCode from '../code-preview/use-qrcode'
 import type { IQRCode } from '../../types'
-import linePng from '@/assets/images/line.png'
 
 import './index.scss'
 import Empty from '@/components/empty'
@@ -234,7 +233,7 @@ const BatchCodeGenerator: React.FC = () => {
           />
           <div className="batch-generator-title-info">
             <div className="batch-generator-title-text">{titleText}</div>
-            <img className="batch-generator-title-line" src={linePng} alt="" />
+            {/* <img className="batch-generator-title-line" src={linePng} alt="" /> */}
           </div>
         </div>
         <div className="batch-generator-title-actions">

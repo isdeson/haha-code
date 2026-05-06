@@ -23,7 +23,6 @@ import {
 import { useControlContext } from '../../control-context'
 import type { IQRCode, IQRCodeConfig } from '../../types'
 import dayjs from 'dayjs'
-import linePng from '@/assets/images/line.png'
 import defaultLogoPng from '@/assets/images/logo.png'
 import './index.scss'
 import { useEffect, useRef, useState, useMemo } from 'react'
@@ -109,8 +108,13 @@ const CodeSetting: React.FC = () => {
     activeQrCode?.urlParams ?? (parsed.valid ? extractParams(content) : [])
 
   useEffect(() => {
-    if (formRef.current && activeQrCode?.id) {
+    if (!formRef.current) return
+    if (activeQrCode?.id) {
+      // 切换到有效二维码时，同步表单值
       formRef.current.formApi.setValues({ ...activeQrCode })
+    } else {
+      // 无选中二维码时（空分组/无搜索结果），清空表单避免残留上一个二维码的配置
+      formRef.current.formApi.reset()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeQrCodeId])
@@ -250,7 +254,7 @@ const CodeSetting: React.FC = () => {
 
       <div className="module-title">
         <div className="module-title-text">二维码配置</div>
-        <img className="module-title-line" src={linePng} alt="" />
+        {/* <img className="module-title-line" src={linePng} alt="" /> */}
       </div>
 
       {groupList?.length > 0 && (

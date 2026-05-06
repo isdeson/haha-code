@@ -76,13 +76,17 @@ export const ControlProvider = ({ children }: ControlProviderProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // 当前选中的二维码不在过滤结果中时，自动切换到第一个
+  // 当前选中的二维码不在过滤结果中时，自动切换到第一个；过滤结果为空时清空选中
   useEffect(() => {
-    if (
-      filteredCodeList?.length > 0 &&
-      !filteredCodeList.some((item) => item.id === setting?.activeQrCodeId)
-    ) {
+    const isActiveInFiltered = filteredCodeList?.some(
+      (item) => item.id === setting?.activeQrCodeId,
+    )
+    if (filteredCodeList?.length > 0 && !isActiveInFiltered) {
+      // 有数据但当前选中不在过滤结果中，切换到第一个
       setSetting((prev) => ({ ...prev, activeQrCodeId: filteredCodeList[0].id }))
+    } else if (filteredCodeList?.length === 0 && setting?.activeQrCodeId) {
+      // 过滤结果为空（空分组/无搜索结果），清空选中避免配置面板残留上一个二维码信息
+      setSetting((prev) => ({ ...prev, activeQrCodeId: undefined }))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredCodeList?.length, setting?.searchKeyWords, setting?.activeGroupId])
